@@ -1,0 +1,118 @@
+{
+    "$version": "0.1",
+    "$defaults": {
+        "template": {
+            "$type": "$file",
+            "$directory": "/templates/"
+        },
+        "python-renderer": {
+            "$type": "$file",
+            "$directory": "/templates/renderers/"
+        },
+        "$all": {
+            "$type": "$file",
+            "$directory": "/",
+            "repository-path": "/repos/",
+            "images-path": "/images/"
+        }
+    },
+    "@/": {
+        "python-renderer": "index.py",
+        "template": null
+    },
+    "@/home": {
+        "python-renderer": "home.py",
+        "template": "home.html"
+    },
+    "@/software": {
+        "python-renderer": "software.py",
+        "template": "software.html",
+        "software-list": {
+            "pythonic": "software-list.py",
+            "jsonic": "software-list.json",
+            "mapdb": "software-list.map",
+            "use": "jsonic"
+        }
+    },
+    "@/software/<name>": {
+        "python-renderer": "/software/<name>/renderer.py",
+        "template": "/software/<name>/page.html",
+        "software-accessor": {
+            "pythonic": "/software/<name>/accessor.py",
+            "jsonic": "/software/<name>/accessor.json",
+            "mapdb": "/software/<name>/accessor.map",
+            "use": "pythonic"
+        }
+    },
+    "@/account": {
+        "python-renderer": "account.py",
+        "template": "account.html",
+        "$global": [
+            "accounts"
+        ],
+        "$methods": [
+            "GET",
+            "POST"
+        ]
+    },
+    "@/account/login": {
+        "python-renderer": "login.py",
+        "template": "login.html",
+        "$global": [
+            "accounts"
+        ],
+        "$methods": [
+            "GET",
+            "POST"
+        ]
+    },
+    "@/account/register": {
+        "python-renderer": "register.py",
+        "template": "register.html",
+        "$global": [
+            "accounts"
+        ],
+        "$methods": [
+            "GET",
+            "POST"
+        ]
+    },
+    "@/account/verify": {
+        "python-renderer": "verify.py",
+        "template": "verify.html",
+        "$global": [
+            "accounts",
+            "codes"
+        ],
+        "$methods": [
+            "GET",
+            "POST"
+        ]
+    }, 
+    "@/contact": {
+        "python-renderer": "contact.py",
+        "template": "contact.html",
+        "contact-list": {
+            "pythonic": "contact-list.py",
+            "jsonic": "contact-list.json",
+            "mapdb": "contact-list.map",
+            "use": "jsonic"
+        }
+    },
+    "@/lqgs10h": {
+        "python-renderer": null,
+        "template": "lqgs10h.html"
+    },
+    "@/repos/<path:repofilepath>": {
+        "python-renderer": "repo.py",
+        "template": null
+    },
+    "@/images/<path:imagepath>": {
+        "python-renderer": "image.py",
+        "template": null
+    },
+    "harmony/": {
+        "python-renderer": "/harmony/index.py",
+        "template": "/harmony/index.html"
+    }
+}

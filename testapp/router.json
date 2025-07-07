@@ -1,0 +1,52 @@
+{
+    "$version": "0.1",
+    "$defaults": {
+        "template": {
+            "$type": "$file",
+            "$directory": "/templates/"
+        },
+        "python-renderer": {
+            "$type": "$file",
+            "$directory": "/templates/renderers/"
+        },
+        "$all": {
+            "$type": "$file",
+            "$directory": "/",
+            "repository-path": "/repos/",
+            "images-path": "/images/"
+        }
+    },
+    "/": {
+        "python-renderer": null,
+        "template": "index.html"
+    },
+    "/test": {
+        "python-renderer": "test.py",
+        "template": "test.html",
+        "$global": [
+            "choices"
+        ]
+    },
+    "/other/<fruit>": {
+        "python-renderer": "other.py",
+        "template": "other.html",
+        "$global": [
+            "fruit_dict"
+        ]
+    },
+    "/form": {
+        "python-renderer": "form.py",
+        "template": "form.html",
+        "$methods": [
+            "GET",
+            "POST"
+        ],
+        "$global": [
+            "choices"
+        ]
+    },
+    "$error/404": {
+        "python-renderer": "error_404.py",
+        "template": "error_404.html"
+    }
+}

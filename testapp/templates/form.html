@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Subdomain</title>
+</head>
+<body>
+    <h1>Fill out our simple form!</h1>
+    
+    {% if success_message %}
+    <p style="color: green;">{{ success_message }}</p>
+    {% endif %}
+    
+    <form method="POST" action="/form">
+        <p>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" value="{{ form_data.name if form_data else '' }}" required>
+            {% if errors and errors.name %}
+                <br><span style="color: red;">{{ errors.name }}</span>
+            {% endif %}
+        </p>
+        
+        <p>
+            <label for="favorite_fruit">Favorite Fruit:</label><br>
+            <input type="text" id="favorite_fruit" name="favorite_fruit" value="{{ form_data.favorite_fruit if form_data else '' }}" required>
+            {% if errors and errors.favorite_fruit %}
+                <br><span style="color: red;">{{ errors.favorite_fruit }}</span>
+            {% endif %}
+        </p>
+        
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+    </form>
+    
+    {% if form_data and not errors %}
+    <h2>Submitted Information:</h2>
+    <p><strong>Name:</strong> {{ form_data.name }}</p>
+    <p><strong>Favorite Fruit:</strong> {{ form_data.favorite_fruit }}</p>
+    {% endif %}
+</body>
+</html>

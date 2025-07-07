@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "conductor"
+version = "0.1.0"
+description = "A modular, extensible framework for Flask-based web applications."
+authors = [
+    { name = "Pixelated Dream" }
+]
+readme = "README.md"
+license = { text = "CC BY-SA 4.0" }
+requires-python = ">=3.8"
+dependencies = [
+    "flask>=2.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "flake8"
+]
+
+[project.urls]
+Homepage = "https://pixelateddream.net/software/conductor"
+Documentation = "https://rtfm.pixelateddream.net/conductor"
+Source = "https://github.com/pixelateddream/conductor"
+Issues = "https://pixelateddream.net/software/conductor/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
