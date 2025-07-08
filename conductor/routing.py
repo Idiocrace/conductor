@@ -149,6 +149,10 @@ class Router:
                         spec = importlib.util.spec_from_file_location(
                             "renderer_module", abs_path
                         )
+                        if spec is None or spec.loader is None:
+                            raise ImportError(
+                                f"Could not load spec for renderer {renderer}."
+                            )
                         module = importlib.util.module_from_spec(spec)
                         spec.loader.exec_module(module)
                         for attr_name in dir(module):
@@ -172,7 +176,7 @@ class Router:
                     wrapped_func = _wrap_renderer(
                         view_func if view_func
                         else lambda: render_template(rvar('template')),
-                        route_data, globals_list
+                        route_data, globals_list, route_cmeta
                     )
 
                     app.errorhandler(error_code)(wrapped_func)
@@ -231,6 +235,10 @@ class Router:
                 spec = importlib.util.spec_from_file_location(
                     "renderer_module", abs_path
                 )
+                if spec is None or spec.loader is None:
+                    raise ImportError(
+                        f"Could not load spec for renderer {renderer}."
+                    )
                 module = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(module)
                 for attr_name in dir(module):
@@ -250,7 +258,7 @@ class Router:
             wrapped_func = _wrap_renderer(
                 view_func if view_func
                 else lambda: render_template(rvar('template')),
-                route_data, globals_list
+                route_data, globals_list, route_cmeta
             )
 
             app.add_url_rule(
